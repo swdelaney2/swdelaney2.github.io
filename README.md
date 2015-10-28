@@ -1,4 +1,4 @@
-# Hello and welcome!
+# Hello and welcome!!
 This repository belongs to Stephen Delaney, current GA student! :school_satchel:
 
 By the end of this course, I will have learned:
