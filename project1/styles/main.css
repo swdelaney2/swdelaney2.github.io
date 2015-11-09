@@ -1,0 +1,15 @@
+form {
+  margin: 0 auto;
+  width: 400px;
+  padding: 1em;
+  border: 1px solid #CCC;
+  border-radius: 1em; }
+
+#playerOneName, #playerTwoName {
+  margin-top: 1em; }
+
+#submitbutton {
+  float: right;
+  margin-top: -3em; }
+
+/*# sourceMappingURL=main.css.map */
