@@ -1,33 +1,17 @@
 $(document).ready(function(){ // start
 
-
-// document.getElementById("submitbutton").onclick = getNames;
-
-
-
-  // var userInput = prompt('What is your name?');
-  // if (userInput.length < 1) {
-  //   alert('Hey, you didn\'t give us your name.')}
-  //   else {
-  //     alert('Thanks, ' + userInput + '!!!!!!!')}
-  //
-  // var getName = $('#getname');
-  //  getName.click(function() {
-  //      alert(Welcome, getname!);
-  //  });
+function getNames () {
+  var firstPlayer = $('#playerOneName').val();
+   var secondPlayer = $('#playerTwoName').val();
+ console.log('The first player is ' + firstPlayer);
+  console.log('The second player is ' + secondPlayer);
+};
 
 
-
+$("#submitbutton").click(function() {
+getNames();
+$ ("#nameForm").hide();
+});
 
 
 }); // end
-
-function getNames () {
- var playerOne = document.getElementById('playerOneName').value;
- var playerTwo = document.getElementById('playerTwoName').value;
- console.log(PlayerOne);
-};
-
-$( "#submitbutton" ).click(function() {
-getNames()
-});
