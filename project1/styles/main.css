@@ -12,4 +12,14 @@ form {
   float: right;
   margin-top: -3em; }
 
+#playspace {
+  float: left;
+  width: 70%;
+  border: 1px black solid; }
+
+#scores {
+  float: left;
+  width: 20%;
+  border: 1px black solid; }
+
 /*# sourceMappingURL=main.css.map */
