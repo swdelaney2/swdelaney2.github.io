@@ -34,18 +34,6 @@ $('#playspace').append('<div id="directions"></div>');
 
 $(window).on("keyup", directionsListener);
 
-/* old listener for reference. no longer needed / has been replaced.
-
-    window.addEventListener('keyup', function(event) {
-  // look for specific keys to be pressed
-  if (event.keyCode == 32) {
-    $( "#directions" ).hide();
-startRound();
-  }
-});
-
-end working listener */
-
 }; // end of get names
 
 $("#submitbutton").click(function() {
@@ -86,14 +74,6 @@ var playerOneAll = {
   forefit: 'turnForEachPlayer(playerTwoAll)'
 }
 
-// var playerTwoAll = {
-//   label: "Player 2 Answer:",
-//   id: "playerTwoRound",
-//   submitId: "submitbuttonRoundPlayerTwo",
-//   callSubmitId: "#submitbuttonRoundPlayerTwo",
-//   checkAnswer: 'checkAnswerPlayerTwo()',
-// }
-
 var playerTwoAll = {
   label: "Player 2 Answer:",
   id: "playerTwoRound",
@@ -117,23 +97,6 @@ function turnForEachPlayer(whichPlayer){
   });
 }
 
-// currently deactivated
-// function checkAnswerPlayerOne (){ // need to make for player two
-//   // console.log('checkAnswerPlayerOne has been called');
-//   $ ("#formround").hide();
-//   var firstPlayerAnswer = $('#playerOneRound').val();
-// if (firstPlayerAnswer == questionsAndAnswers[currentInc.universalInc * 2]) {
-//     $('#round').append('<p>You got it! One point for player one!');
-// onePointForPlayerOne();
-// addOneToInc();
-// setTimeout(nextRound, 2000);
-// } else {
-//   $('#round').append('<p>Sorry, that is not correct. Player two, you now have a chance to answer.');
-//   turnForEachPlayer(playerTwoAll);
-// }
-// };
-
-// WORK AREA
 
 function checkAnswer (whichPlayer){
   $ ("#formround").hide();
