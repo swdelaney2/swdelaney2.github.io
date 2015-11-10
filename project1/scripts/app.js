@@ -102,13 +102,17 @@ function checkAnswerPlayerOne (){ // need to make for player two
 if (firstPlayerAnswer == questionsAndAnswers.QuestionOne[1]) {
     $('#round').append('<p>You got it! One point for player one!');
 onePointForPlayerOne();
+setTimeout(nextRound, 2000);
 } else {
   $('#round').append('<p>Sorry, that is not correct. Player two, you now have a chance to answer.');
   turnForEachPlayer(playerTwoAll);
 }
 };
 
-
+function nextRound() {
+  $('#round').html('');
+  $('#round').append(questionsAndAnswers.QuestionTwo[0]);
+};
 
 var round = $('<div id=round>');
 // var firstPlayerScore = 0;
