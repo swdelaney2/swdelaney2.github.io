@@ -1,11 +1,13 @@
 $ ("#playspace").hide();
 $ ("#scores").hide();
+$ ("#roundkeeper").hide();
 
 
 var directionsListener = function(event) {
   if (event.keyCode == 32) {
     $( "#directions" ).hide();
 startRound();
+
 $(window).off("keyup", directionsListener);
 
   }}
@@ -18,6 +20,8 @@ function getNames () {
  console.log('The first player is ' + firstPlayer);
   console.log('The second player is ' + secondPlayer);
   $ ("#nameForm").hide();
+  $ ("#roundkeeper").fadeIn();
+  $ ("#roundkeeper").append('<h1>Round Number ' + currentInc.universalInc + '</h1>');
   $ ("#playspace").fadeIn();
   $ ("#scores").fadeIn();
 
@@ -52,7 +56,7 @@ getNames();
 
 function startRound(){
   $('#playspace').append(round);
-  $('#round').append(questionsAndAnswers.QuestionOne[0]);
+  $('#round').append(questionsAndAnswers[currentInc.universalInc]);
   console.log('Space button pressed.');
   window.addEventListener('keyup', function(event) {
 
@@ -99,9 +103,10 @@ function checkAnswerPlayerOne (){ // need to make for player two
   // console.log('checkAnswerPlayerOne has been called');
   $ ("#formround").hide();
   var firstPlayerAnswer = $('#playerOneRound').val();
-if (firstPlayerAnswer == questionsAndAnswers.QuestionOne[1]) {
+if (firstPlayerAnswer == questionsAndAnswers[currentInc.universalInc * 2]) {
     $('#round').append('<p>You got it! One point for player one!');
 onePointForPlayerOne();
+addOneToInc();
 setTimeout(nextRound, 2000);
 } else {
   $('#round').append('<p>Sorry, that is not correct. Player two, you now have a chance to answer.');
@@ -111,21 +116,18 @@ setTimeout(nextRound, 2000);
 
 function nextRound() {
   $('#round').html('');
-  $('#round').append(questionsAndAnswers.QuestionTwo[0]);
+  $('#round').append(questionsAndAnswers[currentInc.universalInc * 2 - 1]);
 };
 
 var round = $('<div id=round>');
 // var firstPlayerScore = 0;
-var secondPlayerScore = 0;
-var questionsAndAnswers = {
-  QuestionOne: ['Who is the current president?', 'Barack Obama'],
-  QuestionTwo: ['What is my favorite color?', 'Green'],
-}
+var secondPlayerScore = 0; // need to comment out later
+var questionsAndAnswers = ['blank', 'Who is the current president?', 'Barack Obama','What is my favorite color?', 'Green', 'What is my middle name?', 'William']
 
 
 
 
-// SCORING BELOW
+// SCORING BELOW -- need to make for player two
 
 function baseScoreOne() {
   this.scoreOne = 0;
@@ -136,4 +138,15 @@ var firstPlayerScore = new baseScoreOne();
 function onePointForPlayerOne() {
   firstPlayerScore.scoreOne += 1;
   $('#namedOneScore').html(firstPlayerScore.scoreOne);
+}
+
+function incrementer() {
+  this.universalInc = 1;
+};
+
+var currentInc = new incrementer();
+
+function addOneToInc() {
+  currentInc.universalInc += 1;
+  $('#roundkeeper').html('<h1>Round Number ' + currentInc.universalInc + '</h1>');
 }
