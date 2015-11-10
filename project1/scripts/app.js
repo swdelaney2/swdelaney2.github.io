@@ -23,25 +23,19 @@ function getNames () {
 $('#playspace').append('<div id="directions"></div>');
     $( "#directions" ).append('Welcome to the trivia game! This game contains ten questions. Player one, if you know the answer, buzz in by typing "Q." Player two, if you know the answer, buzz in by typing "P." <p>Got it? Great! Press "SPACE" to begin.');
 
-
-// playing here
-
 $(window).on("keyup", directionsListener);
 
+/* old listener for reference. no longer needed / has been replaced.
 
+    window.addEventListener('keyup', function(event) {
+  // look for specific keys to be pressed
+  if (event.keyCode == 32) {
+    $( "#directions" ).hide();
+startRound();
+  }
+});
 
-
-// end play
-
-// working listener
-//     window.addEventListener('keyup', function(event) {
-//   // look for specific keys to be pressed
-//   if (event.keyCode == 32) {
-//     $( "#directions" ).hide();
-// startRound();
-//   }
-// });
-//end working listener
+end working listener */
 
 }; // end of get names
 
@@ -49,16 +43,7 @@ $("#submitbutton").click(function() {
 getNames();
 });
 
-$("#submitbuttonRoundPlayerOne").click(function() {
-checkAnswerPlayerOne();
-});
-
-$("#submitbuttonRoundPlayerTwo").click(function() {
-checkAnswerPlayerTwo();
-});
-
-
-}); // end
+}); // end of onload
 
 function startRound(){
   $('#playspace').append(round);
@@ -68,20 +53,33 @@ function startRound(){
 
   if (event.keyCode == 81) { //Q, player one
     console.log('Player one has keyed in.');
-  $('#round').append('<form id="formround"><div><label for="playerOneRound">Player 1 Answer:</label><input type="text" id="playerOneRound" /></div></form><p><div class="button"><button type="button" id="submitbuttonRoundPlayerOne">Submit</button></div>');
+  $('#round').append('<form id="formround"><div><label for="playerOneRound">Player 1 Answer:</label><input type="text" id="playerOneRound"/></div></form><p><div class="button"><button type="button" id="submitbuttonRoundPlayerOne">Submit</button></div>');
+  $("#submitbuttonRoundPlayerOne").click(function() {
+    console.log('submitbuttonRoundPlayerOne has been clicked');
+  checkAnswerPlayerOne();
+  });
   }
   if (event.keyCode == 80) { //P, player two
-  $('#round').append('<form id="formround"><div><label for="playerTwoRound">Player 2 Answer:</label><input type="text" id="playerTwoRound" /></div></form><p><div class="button"><button type="button" id="submitbuttonRoundPlayerTwo">Submit</button></div>');
+  $('#round').append('<form id="formround"><div><label for="playerTwoRound">Player 2 Answer:</label><input type="text" id="playerTwoRound"/></div></form><p><div class="button"><button type="button" id="submitbuttonRoundPlayerTwo">Submit</button></div>');
+  $("#submitbuttonRoundPlayerTwo").click(function() {
+  checkAnswerPlayerTwo();
+  });
 };
 });
 
-};
+}; // end of start round
+
 function checkAnswerPlayerOne (){ // need to make for player two
+  console.log('checkAnswerPlayerOne has been called')
   $ ("#formround").hide();
   var firstPlayerAnswer = $('#playerOneRound').val();
-if (firstPlayerAnswer == questionsAndAnswers.QuestionOne[1]);
-console.log('Player one should get a point here. Correct answer was ' + questionsAndAnswers.QuestionOne[1]);
+if (firstPlayerAnswer == questionsAndAnswers.QuestionOne[1]) {
+console.log('Player one should get a point here. Correct answer was ' + questionsAndAnswers.QuestionOne[1])};
 };
+
+
+
+
 
 var round = $('<div id=round>');
 var firstPlayerScore = 0;
@@ -89,5 +87,4 @@ var secondPlayerScore = 0;
 var questionsAndAnswers = {
   QuestionOne: ['Who is the current president?', 'Barack Obama'],
   QuestionTwo: ['What is my favorite color?', 'Green'],
-
 }
