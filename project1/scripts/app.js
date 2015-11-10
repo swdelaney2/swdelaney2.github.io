@@ -71,7 +71,7 @@ var playerOneAll = {
   identifySelfText: 'one',
   identifyOpponentText: 'two',
   givepoint: 'onePointForPlayerOne()',
-  forefit: 'turnForEachPlayer(playerTwoAll)'
+  forfeit: 'turnForEachPlayer(playerTwoAll)'
 }
 
 var playerTwoAll = {
@@ -84,7 +84,7 @@ var playerTwoAll = {
   identifySelfText: 'two',
   identifyOpponentText: 'one',
   givepoint: 'onePointForPlayerTwo()',
-  forefit: 'turnForEachPlayer(playerOneAll)'
+  forfeit: 'turnForEachPlayer(playerOneAll)'
 }
 
 
@@ -108,13 +108,9 @@ addOneToInc();
 setTimeout(nextRound, 2000);
 } else {
   $('#round').append('<p>Sorry, that is not correct. Player ' + whichPlayer.identifyOpponentText + ', you now have a chance to answer.');
-  eval(whichPlayer.forefit);
+  eval(whichPlayer.forfeit);
 }
 };
-
-
-
-//
 
 
 
