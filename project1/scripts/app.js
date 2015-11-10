@@ -53,11 +53,7 @@ function startRound(){
 
   if (event.keyCode == 81) { //Q, player one
     console.log('Player one has keyed in.');
-  $('#round').append('<form id="formround"><div><label for="playerOneRound">Player 1 Answer:</label><input type="text" id="playerOneRound"/></div></form><p><div class="button"><button type="button" id="submitbuttonRoundPlayerOne">Submit</button></div>');
-  $("#submitbuttonRoundPlayerOne").click(function() {
-    console.log('submitbuttonRoundPlayerOne has been clicked');
-  checkAnswerPlayerOne();
-  });
+turnPlayerOne();
   }
   if (event.keyCode == 80) { //P, player two
   $('#round').append('<form id="formround"><div><label for="playerTwoRound">Player 2 Answer:</label><input type="text" id="playerTwoRound"/></div></form><p><div class="button"><button type="button" id="submitbuttonRoundPlayerTwo">Submit</button></div>');
@@ -68,6 +64,14 @@ function startRound(){
 });
 
 }; // end of start round
+
+function turnPlayerOne(){
+  $('#round').append('<form id="formround"><div><label for="playerOneRound">Player 1 Answer:</label><input type="text" id="playerOneRound"/></div></form><p><div class="button"><button type="button" id="submitbuttonRoundPlayerOne">Submit</button></div>');
+  $("#submitbuttonRoundPlayerOne").click(function() {
+    console.log('submitbuttonRoundPlayerOne has been clicked');
+  checkAnswerPlayerOne();
+  });
+}
 
 function checkAnswerPlayerOne (){ // need to make for player two
   console.log('checkAnswerPlayerOne has been called')
