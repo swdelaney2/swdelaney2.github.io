@@ -1,6 +1,13 @@
 $ ("#playspace").hide();
 $ ("#scores").hide();
 
+var directionsListener = function(event) {
+  if (event.keyCode == 32) {
+    $( "#directions" ).hide();
+startRound();
+$(window).off("keyup", directionsListener);
+
+  }}
 
 $(document).ready(function(){ // start
 
@@ -15,14 +22,28 @@ function getNames () {
   $( "#scores" ).append(firstPlayer + ': ' + firstPlayerScore + '   (Player One)<p>' + secondPlayer + ': ' + secondPlayerScore + '   (Player Two)');
 $('#playspace').append('<div id="directions"></div>');
     $( "#directions" ).append('Welcome to the trivia game! This game contains ten questions. Player one, if you know the answer, buzz in by typing "Q." Player two, if you know the answer, buzz in by typing "P." <p>Got it? Great! Press "SPACE" to begin.');
-    window.addEventListener('keyup', function(event) {
-  // look for specific keys to be pressed
-  if (event.keyCode == 32) {
-    $( "#directions" ).hide();
-startRound();
-  }
-});
-};
+
+
+// playing here
+
+$(window).on("keyup", directionsListener);
+
+
+
+
+// end play
+
+// working listener
+//     window.addEventListener('keyup', function(event) {
+//   // look for specific keys to be pressed
+//   if (event.keyCode == 32) {
+//     $( "#directions" ).hide();
+// startRound();
+//   }
+// });
+//end working listener
+
+}; // end of get names
 
 $("#submitbutton").click(function() {
 getNames();
