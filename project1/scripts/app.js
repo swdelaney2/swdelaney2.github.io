@@ -78,15 +78,33 @@ var playerOneAll = {
   id: "playerOneRound",
   submitId: "submitbuttonRoundPlayerOne",
   callSubmitId: "#submitbuttonRoundPlayerOne",
-  checkAnswer: 'checkAnswerPlayerOne()',
+  checkAnswer: 'checkAnswer(playerOneAll)',
+  idHash: '#playerOneRound',
+  identifySelfText: 'one',
+  identifyOpponentText: 'two',
+  givepoint: 'onePointForPlayerOne()',
+  forefit: 'turnForEachPlayer(playerTwoAll)'
 }
+
+// var playerTwoAll = {
+//   label: "Player 2 Answer:",
+//   id: "playerTwoRound",
+//   submitId: "submitbuttonRoundPlayerTwo",
+//   callSubmitId: "#submitbuttonRoundPlayerTwo",
+//   checkAnswer: 'checkAnswerPlayerTwo()',
+// }
 
 var playerTwoAll = {
   label: "Player 2 Answer:",
   id: "playerTwoRound",
   submitId: "submitbuttonRoundPlayerTwo",
   callSubmitId: "#submitbuttonRoundPlayerTwo",
-  checkAnswer: 'checkAnswerPlayerTwo()',
+  checkAnswer: 'checkAnswer(playerTwoAll)',
+  idHash: '#playerTwoRound',
+  identifySelfText: 'two',
+  identifyOpponentText: 'one',
+  givepoint: 'onePointForPlayerTwo()',
+  forefit: 'turnForEachPlayer(playerOneAll)'
 }
 
 
@@ -99,20 +117,44 @@ function turnForEachPlayer(whichPlayer){
   });
 }
 
-function checkAnswerPlayerOne (){ // need to make for player two
-  // console.log('checkAnswerPlayerOne has been called');
+// currently deactivated
+// function checkAnswerPlayerOne (){ // need to make for player two
+//   // console.log('checkAnswerPlayerOne has been called');
+//   $ ("#formround").hide();
+//   var firstPlayerAnswer = $('#playerOneRound').val();
+// if (firstPlayerAnswer == questionsAndAnswers[currentInc.universalInc * 2]) {
+//     $('#round').append('<p>You got it! One point for player one!');
+// onePointForPlayerOne();
+// addOneToInc();
+// setTimeout(nextRound, 2000);
+// } else {
+//   $('#round').append('<p>Sorry, that is not correct. Player two, you now have a chance to answer.');
+//   turnForEachPlayer(playerTwoAll);
+// }
+// };
+
+// WORK AREA
+
+function checkAnswer (whichPlayer){
   $ ("#formround").hide();
-  var firstPlayerAnswer = $('#playerOneRound').val();
-if (firstPlayerAnswer == questionsAndAnswers[currentInc.universalInc * 2]) {
-    $('#round').append('<p>You got it! One point for player one!');
-onePointForPlayerOne();
+  var playerAnswer = $(whichPlayer.idHash).val();
+if (playerAnswer == questionsAndAnswers[currentInc.universalInc * 2]) {
+    $('#round').append('<p>You got it! One point for player ' + whichPlayer.identifySelfText + '!');
+eval(whichPlayer.givepoint)
 addOneToInc();
 setTimeout(nextRound, 2000);
 } else {
-  $('#round').append('<p>Sorry, that is not correct. Player two, you now have a chance to answer.');
-  turnForEachPlayer(playerTwoAll);
+  $('#round').append('<p>Sorry, that is not correct. Player ' + whichPlayer.identifyOpponentText + ', you now have a chance to answer.');
+  eval(whichPlayer.forefit);
 }
 };
+
+
+
+//
+
+
+
 
 function nextRound() {
   $('#round').html('');
@@ -138,6 +180,17 @@ var firstPlayerScore = new baseScoreOne();
 function onePointForPlayerOne() {
   firstPlayerScore.scoreOne += 1;
   $('#namedOneScore').html(firstPlayerScore.scoreOne);
+}
+
+function baseScoreTwo() { // Possible to consolidate???
+  this.scoreTwo = 0;
+};
+
+var secondPlayerScore = new baseScoreTwo();
+
+function onePointForPlayerTwo() {
+  secondPlayerScore.scoreTwo += 1;
+  $('#namedTwoScore').html(secondPlayerScore.scoreTwo);
 }
 
 function incrementer() {
