@@ -65,6 +65,31 @@ turnPlayerOne();
 
 }; // end of start round
 
+// WORK AREA
+var myFuncName = 'somethingWicked';
+function myFuncName(){console.log('wicked');};
+somethingWicked(); // consoles 'wicked'
+
+// want to do above
+var funcs = {};
+var myFuncName = 'somethingWicked';
+funcs[myFuncName] = function(){console.log('wicked');};
+funcs.somethingWicked(); // consoles 'wicked'
+
+var playerOneAll = {
+  label: "Player 1 Answer:",
+  id: "playerOneRound",
+  submitId: "submitbuttonRoundPlayerOne",
+  callSubmitId: "#submitbuttonRoundPlayerOne",
+  checkAnswer: checkAnswerPlayerOne(),
+}
+// END WORK AREA
+
+
+
+
+
+
 function turnPlayerOne(){
   $('#round').append('<form id="formround"><div><label for="playerOneRound">Player 1 Answer:</label><input type="text" id="playerOneRound"/></div></form><p><div class="button"><button type="button" id="submitbuttonRoundPlayerOne">Submit</button></div>');
   $("#submitbuttonRoundPlayerOne").click(function() {
