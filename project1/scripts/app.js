@@ -28,6 +28,14 @@ $("#submitbutton").click(function() {
 getNames();
 });
 
+$("#submitbuttonRoundPlayerOne").click(function() {
+checkAnswerPlayerOne();
+});
+
+$("#submitbuttonRoundPlayerTwo").click(function() {
+checkAnswerPlayerTwo();
+});
+
 
 }); // end
 
@@ -39,15 +47,20 @@ function startRound(){
 
   if (event.keyCode == 81) { //Q, player one
     console.log('Player one has keyed in.');
-  $('#round').append('<form><div><label for="playerOneRound">Player 1 Answer:</label><input type="text" id="playerOneRound" /></div></form><p><div class="button"><button type="button" id="submitbutton">Submit</button></div>');
+  $('#round').append('<form id="formround"><div><label for="playerOneRound">Player 1 Answer:</label><input type="text" id="playerOneRound" /></div></form><p><div class="button"><button type="button" id="submitbuttonRoundPlayerOne">Submit</button></div>');
   }
   if (event.keyCode == 80) { //P, player two
-  $('#round').append('<form><div><label for="playerTwoRound">Player 2 Answer:</label><input type="text" id="playerTwoRound" /></div></form><p><div class="button"><button type="button" id="submitbutton">Submit</button></div>');
+  $('#round').append('<form id="formround"><div><label for="playerTwoRound">Player 2 Answer:</label><input type="text" id="playerTwoRound" /></div></form><p><div class="button"><button type="button" id="submitbuttonRoundPlayerTwo">Submit</button></div>');
 };
 });
 
 };
-function checkAnswer (){};
+function checkAnswerPlayerOne (){ // need to make for player two
+  $ ("#formround").hide();
+  var firstPlayerAnswer = $('#playerOneRound').val();
+if (firstPlayerAnswer == questionsAndAnswers.QuestionOne[1]);
+console.log('Player one should get a point here. Correct answer was ' + questionsAndAnswers.QuestionOne[1]);
+};
 
 var round = $('<div id=round>');
 var firstPlayerScore = 0;
