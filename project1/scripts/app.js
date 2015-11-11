@@ -19,7 +19,7 @@ var playerOneListener = function(event) {
   turnForEachPlayer(playerOneAll);
   $(window).off("keyup", playerOneListener);
   $(window).off("keyup", playerTwoListener);
-
+clearTimerSkip();
     }}
 
 var playerTwoListener = function(event) {
@@ -27,6 +27,7 @@ var playerTwoListener = function(event) {
         turnForEachPlayer(playerTwoAll);
         $(window).off("keyup", playerOneListener);
         $(window).off("keyup", playerTwoListener);
+        clearTimerSkip();
             }}
 
 // DOCUMENT READY START
@@ -95,26 +96,36 @@ function startRound(){
   console.log('Space button pressed.');
   $(window).on("keyup", playerOneListener);
   $(window).on("keyup", playerTwoListener);
-  setTimeout(skipIt, 16000)
+  // setTimerSkip();
 
 }; // end of start round
 
-function turnForEachPlayer(whichPlayer){
-  function timedOut() {eval(whichPlayer.checkAnswer)};
-
-  countdown();
-  var timeoutID;
-  function setTimer(){
-  timeoutID = setTimeout(timedOut, 16000);
+var timeoutID;
+function setTimer(){
+timeoutID = setTimeout(timedOut, 16000);
 };
-  function clearTimer(){
-    clearTimeout(timeoutID);
-  };
-  setTimer();
+function clearTimer(){
+  clearTimeout(timeoutID);
+};
+
+var timeoutskipID;
+function setTimerSkip(){
+timeoutskipID = setTimeout(skipIt, 16000);
+};
+function clearTimerSkip(){
+  clearTimeout(timeoutskipID);
+};
+
+function timedOut() {eval(whichPlayer.checkAnswer)}; // PAY ATTENTION TO THIS
+
+function turnForEachPlayer(whichPlayer){
+function timedOut() {eval(whichPlayer.checkAnswer)}; // PAY ATTENTION TO THIS
+  // countdown();
+  // setTimer();
   $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id=' + whichPlayer.submitId + '>Submit</button></div></form>');
   $(whichPlayer.callSubmitId).click(function() {
     console.log('submitbuttonRoundPlayerOne has been clicked');
-clearTimer();
+// clearTimer();
 eval(whichPlayer.checkAnswer);
   // $('#countdown').fadeOut();
   });
@@ -128,7 +139,7 @@ if (playerAnswer === questionsAndAnswers[currentInc.universalInc * 2] && playerA
     $('#round').append('<p>You got it! One point for player ' + whichPlayer.identifySelfText + '!');
 eval(whichPlayer.givepoint)
 addOneToInc();
-setTimeout(nextRound, 2000);
+setTimeout(nextRound, 2000); // This is fine.
 } else {
   $('#round').append('<p>Sorry, that is not correct. You lose a point. Player ' + whichPlayer.identifyOpponentText + ', you now have a chance to answer.');
   eval(whichPlayer.losepoint);
@@ -143,48 +154,48 @@ if (playerAnswer === questionsAndAnswers[currentInc.universalInc * 2] && playerA
     $('#round').append('<p>You got it! One point for player ' + whichPlayer.identifySelfText + '!');
 eval(whichPlayer.givepoint)
 addOneToInc();
-setTimeout(nextRound, 2000);
+setTimeout(nextRound, 2000); // This is fine.
 } else {
   $('#round').append('<p>Sorry, that is not correct. You lose a point.');
   eval(whichPlayer.losepoint);
   skipIt();
-  clearTimer();
+  // clearTimer();
 }
 };
 // end work area
 function turnForForfeit(whichPlayer){
   function timedOut() {
     skipIt();
-    clearTimer();
+    // clearTimer();
   };
 
-  countdown();
-  var timeoutID;
-  function setTimer(){
-  timeoutID = setTimeout(timedOut, 16000);
-};
-  function clearTimer(){
-    clearTimeout(timeoutID);
-  };
-  setTimer();
+  // countdown();
+//   var timeoutID;
+//   function setTimer(){
+//   timeoutID = setTimeout(timedOut, 16000);
+// };
+//   function clearTimer(){
+//     clearTimeout(timeoutID);
+//   };
+//   setTimer();
   $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id=' + whichPlayer.submitId + '>Submit</button></div><div class="button"><button type="button" id="skipper">Skip</button></div></form>');
   $(whichPlayer.callSubmitId).click(function() {
     console.log('submitbuttonRoundPlayerOne has been clicked');
-clearTimer();
+// clearTimer();
 eval(whichPlayer.forfeitcheckAnswer);
   $('#countdown').fadeOut();
   });
   $('#skipper').click(function() {
     skipIt();
-    clearTimer();
+    // clearTimer();
   });
 }
 
 function skipIt() {
-  console.log('Skipper has been clicked. need to add logic.');
+  console.log('Skipper has been clicked.');
   $('#round').append('<p>The answer was '+ questionsAndAnswers[currentInc.universalInc * 2] + '. Onto the next round!');
   addOneToInc();
-  setTimeout(nextRound, 2000);
+  setTimeout(nextRound, 2000); // ALL GOOD
 };
 
 //second round
@@ -194,7 +205,7 @@ function nextRound() {
     $('#roundkeeper').hide();
     finalScore();
   } else {
-  setTimeout(skipIt, 16000)
+  // setTimeout(skipIt, 16000)
   $(window).on("keyup", playerOneListener);
   $(window).on("keyup", playerTwoListener);
   $('#round').html('');
@@ -263,10 +274,11 @@ function minusPointForPlayerTwo() {
 // FINAL SCORE
 
 function finalScore() {
-  if (firstPlayerScore > secondPlayerScore) {
+  $('#round').html('');
+  if (firstPlayerScore.scoreOne > secondPlayerScore.scoreTwo) {
     console.log('First player wins.');
     $('#round').append('<p>Congratulations, player one! You are the winner!!!! Godney smiles down upon you.');
-  } else if (firstPlayerScore < secondPlayerScore) {
+  } else if (firstPlayerScore.scoreOne < secondPlayerScore.scoreTwo) {
     console.log('Second player wins.');
   $('#round').append('<p>Congratulations, player two! You are the winner!!!! Godney smiles down upon you.');
   } else {
