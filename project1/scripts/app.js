@@ -151,6 +151,10 @@ eval(whichPlayer.checkAnswer);
   });
   $('#skipper').click(function() {
     console.log('Skipper has been clicked. need to add logic.');
+    clearTimer();
+    $('#round').append('The answer was '+ questionsAndAnswers[currentInc.universalInc * 2] + '. Onto the next round!');
+    addOneToInc();
+    setTimeout(nextRound, 2000);
   });
 }
 
