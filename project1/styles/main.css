@@ -1,26 +1,41 @@
+body {
+  background: white; }
+
 form {
   margin: 0 auto;
   width: 400px;
+  height: 400px;
   padding: 1em;
-  border: 1px solid #CCC;
-  border-radius: 1em; }
+  border: 1px solid #3b8686;
+  border-radius: 1em;
+  background: #79bd9a;
+  color: aliceblue; }
 
-#playerOneName, #playerTwoName {
+#playerOneName {
+  margin-top: 15%; }
+
+#playerTwoName {
   margin-top: 1em; }
 
 #submitbutton {
   float: right;
-  margin-top: -3em; }
+  margin-top: -3em;
+  border: 0;
+  color: aliceblue;
+  background: #3b8686; }
 
 #playspace {
   float: left;
   width: 70%;
-  border: 1px black solid; }
+  border: 1px black solid;
+  border-radius: 1em;
+  padding: 1em; }
 
 #scores {
   float: left;
   width: 20;
-  border: 1px black solid; }
+  border: 1px black solid;
+  padding: 1em; }
 
 #countdown {
   float: left;
@@ -35,6 +50,23 @@ form {
   border: 1px black solid; }
 
 h1 {
-  text-align: center; }
+  color: aliceblue;
+  text-align: center;
+  font-family: 'femme_fatale_britneyregular';
+  font-size: 400%; }
+
+h2 {
+  margin: auto;
+  color: black;
+  text-align: center;
+  font-family: 'femme_fatale_britneyregular';
+  font-size: 400%; }
+
+@font-face {
+  font-family: 'femme_fatale_britneyregular';
+  src: url("femmefatalealbum-webfont.eot");
+  src: url("femmefatalealbum-webfont.eot?#iefix") format("embedded-opentype"), url("femmefatalealbum-webfont.woff2") format("woff2"), url("femmefatalealbum-webfont.woff") format("woff"), url("femmefatalealbum-webfont.ttf") format("truetype"), url("femmefatalealbum-webfont.svg#femme_fatale_britneyregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
 
 /*# sourceMappingURL=main.css.map */
