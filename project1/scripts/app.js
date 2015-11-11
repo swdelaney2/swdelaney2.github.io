@@ -86,7 +86,7 @@ var playerTwoAll = {
   identifySelfText: 'two',
   identifyOpponentText: 'one',
   givepoint: 'onePointForPlayerTwo()',
-  losepoint: 'minusPointForPlayerTwo',
+  losepoint: 'minusPointForPlayerTwo()',
   forfeit: 'turnForForfeit(playerOneAll)'
 }
 
@@ -131,7 +131,10 @@ setTimeout(nextRound, 2000);
 
 //second round -- work in progress
 function turnForForfeit(whichPlayer){
-  function timedOut() {eval(whichPlayer.checkAnswer)};
+  function timedOut() {
+    skipIt();
+    clearTimer();
+  };
 
   countdown();
   var timeoutID;
@@ -150,14 +153,17 @@ eval(whichPlayer.checkAnswer);
   $('#countdown').fadeOut();
   });
   $('#skipper').click(function() {
-    console.log('Skipper has been clicked. need to add logic.');
+    skipIt();
     clearTimer();
-    $('#round').append('The answer was '+ questionsAndAnswers[currentInc.universalInc * 2] + '. Onto the next round!');
-    addOneToInc();
-    setTimeout(nextRound, 2000);
   });
 }
 
+function skipIt() {
+  console.log('Skipper has been clicked. need to add logic.');
+  $('#round').append('The answer was '+ questionsAndAnswers[currentInc.universalInc * 2] + '. Onto the next round!');
+  addOneToInc();
+  setTimeout(nextRound, 2000);
+};
 
 //second round
 
