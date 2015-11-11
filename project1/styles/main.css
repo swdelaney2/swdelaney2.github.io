@@ -1,7 +1,7 @@
 body {
-  background: white; }
+  background: #272b2b; }
 
-form {
+#nameForm {
   margin: 0 auto;
   width: 400px;
   height: 400px;
@@ -11,13 +11,21 @@ form {
   background: #79bd9a;
   color: aliceblue; }
 
+#formround {
+  background: #0b486b;
+  color: aliceblue;
+  border-radius: 1em;
+  border: 1px solid #3b8686;
+  padding: 1em;
+  margin: 1em; }
+
 #playerOneName {
   margin-top: 15%; }
 
 #playerTwoName {
   margin-top: 1em; }
 
-#submitbutton {
+#submitbutton, #submitbuttonRoundPlayerOne, #submitbuttonRoundPlayerTwo {
   float: right;
   margin-top: -3em;
   border: 0;
@@ -25,17 +33,22 @@ form {
   background: #3b8686; }
 
 #playspace {
+  border: 1px solid #3b8686;
+  border-radius: 1em;
+  background: #79bd9a;
+  color: aliceblue;
   float: left;
   width: 70%;
-  border: 1px black solid;
-  border-radius: 1em;
   padding: 1em; }
 
 #scores {
+  background: #cff09e;
+  color: #0b486b;
   float: left;
   width: 20;
   border: 1px black solid;
-  padding: 1em; }
+  padding: 1em;
+  border-radius: 20%; }
 
 #countdown {
   float: left;
@@ -43,11 +56,13 @@ form {
   border: 1px black solid; }
 
 #roundkeeper {
+  background: #3b8686;
+  border: 1px solid #79bd9a;
   margin: 0 auto;
   height: 4em;
   margin-bottom: 2em;
   width: 70%;
-  border: 1px black solid; }
+  border-radius: 40%; }
 
 h1 {
   color: aliceblue;
