@@ -212,9 +212,25 @@ function nextRound() {
 var round = $('<div id=round>');
 // var firstPlayerScore = 0;
 var secondPlayerScore = 0; // need to comment out later
-var questionsAndAnswers = ['blank', 'Who is the current president?', 'Barack Obama','What is my favorite color?', 'Green', 'What is my middle name?', 'William']
-
-
+var questionsAndAnswers = ["blank",
+  "You want a hot body? You want a Bugatti? You want a Maserati?",
+  "Work Bitch",
+  "Lollipop. Must mistake me, you're the sucker / to think that I / would be a victim, not another.", "Womanizer",
+  "Cause, you feel like paradise / and I need a vacation tonight.",
+  "Hold It Against Me",
+  "It's getting late / To give you up. / I took a sip / From my devil's cup.",
+  "Toxic", "So come on / Won't you give me something to remember? / Baby, shut your mouth. . .",
+  "Inside Out",
+  "I'm miss bad media karma. / Another day another drama. / Guess I can't see no harm in working and being a mama.",
+  "Piece of Me",
+  "My loneliness is killing me. I must confess, I still believe. When I'm not with you, I lose my mind. Give me a sign.",
+  "Baby One More Time",
+  "But I thought the old lady dropped it into the ocean in the end?",
+  "Oops I Did It Again",
+  "Tell me, is it true that these men are from Mars? Is that why they be acting bizarre?",
+  "Pretty Girls",
+  "What would it take for you to just leave with me? Not trying to sound conceited, but me and you were meant to be.",
+  "Boys"];
 
 
 // SCORING BELOW
