@@ -1,6 +1,7 @@
 $ ("#playspace").hide();
 $ ("#scores").hide();
 $ ("#roundkeeper").hide();
+$ ("#countdown").hide();
 
 
 var directionsListener = function(event) {
@@ -71,7 +72,8 @@ var playerOneAll = {
   identifySelfText: 'one',
   identifyOpponentText: 'two',
   givepoint: 'onePointForPlayerOne()',
-  forfeit: 'turnForEachPlayer(playerTwoAll)'
+  losepoint: 'minusPointForPlayerOne()',
+  forfeit: 'turnForForfeit(playerTwoAll)'
 }
 
 var playerTwoAll = {
@@ -84,16 +86,30 @@ var playerTwoAll = {
   identifySelfText: 'two',
   identifyOpponentText: 'one',
   givepoint: 'onePointForPlayerTwo()',
-  forfeit: 'turnForEachPlayer(playerOneAll)'
+  losepoint: 'minusPointForPlayerTwo',
+  forfeit: 'turnForForfeit(playerOneAll)'
 }
 
 
 
 function turnForEachPlayer(whichPlayer){
+  function timedOut() {eval(whichPlayer.checkAnswer)};
+
+  countdown();
+  var timeoutID;
+  function setTimer(){
+  timeoutID = setTimeout(timedOut, 16000);
+};
+  function clearTimer(){
+    clearTimeout(timeoutID);
+  };
+  setTimer();
   $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id=' + whichPlayer.submitId + '>Submit</button></div></form>');
   $(whichPlayer.callSubmitId).click(function() {
     console.log('submitbuttonRoundPlayerOne has been clicked');
-  eval(whichPlayer.checkAnswer);
+clearTimer();
+  timedOut();
+  $('#countdown').fadeOut();
   });
 }
 
@@ -107,13 +123,39 @@ eval(whichPlayer.givepoint)
 addOneToInc();
 setTimeout(nextRound, 2000);
 } else {
-  $('#round').append('<p>Sorry, that is not correct. Player ' + whichPlayer.identifyOpponentText + ', you now have a chance to answer.');
+  $('#round').append('<p>Sorry, that is not correct. You lose a point. Player ' + whichPlayer.identifyOpponentText + ', you now have a chance to answer.');
+  eval(whichPlayer.losepoint);
   eval(whichPlayer.forfeit);
 }
 };
 
+//second round -- work in progress
+function turnForForfeit(whichPlayer){
+  function timedOut() {eval(whichPlayer.checkAnswer)};
+
+  countdown();
+  var timeoutID;
+  function setTimer(){
+  timeoutID = setTimeout(timedOut, 16000);
+};
+  function clearTimer(){
+    clearTimeout(timeoutID);
+  };
+  setTimer();
+  $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id=' + whichPlayer.submitId + '>Submit</button></div><div class="button"><button type="button" id="skipper">Skip</button></div></form>');
+  $(whichPlayer.callSubmitId).click(function() {
+    console.log('submitbuttonRoundPlayerOne has been clicked');
+clearTimer();
+  timedOut();
+  $('#countdown').fadeOut();
+  });
+  $('#skipper').click(function() {
+    console.log('Skipper has been clicked. need to add logic.');
+  });
+}
 
 
+//second round
 
 function nextRound() {
   $('#round').html('');
@@ -128,7 +170,7 @@ var questionsAndAnswers = ['blank', 'Who is the current president?', 'Barack Oba
 
 
 
-// SCORING BELOW -- need to make for player two
+// SCORING BELOW
 
 function baseScoreOne() {
   this.scoreOne = 0;
@@ -138,6 +180,11 @@ var firstPlayerScore = new baseScoreOne();
 
 function onePointForPlayerOne() {
   firstPlayerScore.scoreOne += 1;
+  $('#namedOneScore').html(firstPlayerScore.scoreOne);
+}
+
+function minusPointForPlayerOne() {
+  firstPlayerScore.scoreOne -= 1;
   $('#namedOneScore').html(firstPlayerScore.scoreOne);
 }
 
@@ -152,6 +199,13 @@ function onePointForPlayerTwo() {
   $('#namedTwoScore').html(secondPlayerScore.scoreTwo);
 }
 
+function minusPointForPlayerTwo() {
+  secondPlayerScore.scoreTwo -= 1;
+  $('#namedTwoScore').html(secondPlayerScore.scoreTwo);
+}
+
+// INCREMENTER BELOW
+
 function incrementer() {
   this.universalInc = 1;
 };
@@ -161,4 +215,27 @@ var currentInc = new incrementer();
 function addOneToInc() {
   currentInc.universalInc += 1;
   $('#roundkeeper').html('<h1>Round Number ' + currentInc.universalInc + '</h1>');
+}
+
+// COUNTDOWN BELOW
+// Heavily modified, but still need to teach self. And need to learn how to kill it.
+// Current fade-in and fade-out method is not fully functional
+
+function countdown() {
+  $ ("#countdown").fadeIn();
+
+var count=16;
+var counter=setInterval(timer, 1000);
+
+
+function timer()
+{
+  count -= 1;
+  if (count <= 0)
+  {
+     clearInterval(counter);
+     return;
+  }
+  $('#countdown').html(count + " secs");
+}
 }
