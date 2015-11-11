@@ -40,14 +40,14 @@ function getNames () {
   console.log('The second player is ' + secondPlayer);
   $ ("#nameForm").hide();
   $ ("#roundkeeper").fadeIn();
-  $ ("#roundkeeper").append('<h1>Round Number ' + currentInc.universalInc + '</h1>');
+  $ ("#roundkeeper").append('<h2>Round Number ' + currentInc.universalInc + '</h2>');
   $ ("#playspace").fadeIn();
   $ ("#scores").fadeIn();
 
   $( "#scores" ).append(firstPlayer + "(Player One): <div id='namedOneScore'>" + 0 + "</div><br>" + secondPlayer + "(Player Two): <div id='namedTwoScore'>" + 0 + "</div>");
 
 $('#playspace').append('<div id="directions"></div>');
-    $( "#directions" ).append('Welcome to the trivia game! This game contains ten questions. Player one, if you know the answer, buzz in by typing "Q." Player two, if you know the answer, buzz in by typing "P." <p>Got it? Great! Press "SPACE" to begin.');
+    $( "#directions" ).append('Welcome to Britney Lyric Trivia! <p>Recognize the font above, you femme fatale? If so, I can tell you are already on your way to winning! <p>This game contains ten questions. Each one is a set of lyrics. Your job is to identify which song they are from. Your answer must match exactly, so no spelling errors. For the sake of this game, do not use any punctuation, except for apostrophes. Also, make sure the first letter of each word is capitalized. <p>For example, if the prompt were "I know I may come off quiet, I may come off shy," you would type "I\'m A Slave For You" -- apostrophe included, all words capitalized. <p><b>Player one</b>, if you know the answer, buzz in by typing "Q." <p><b>Player two</b>, if you know the answer, buzz in by typing "P." <p>Got it? Great! Press "SPACE" to begin.');
 
 $(window).on("keyup", directionsListener);
 
@@ -226,7 +226,7 @@ var questionsAndAnswers = ["blank",
   "Toxic", "So come on / Won't you give me something to remember? / Baby, shut your mouth. . .",
   "Inside Out",
   "I'm miss bad media karma. / Another day another drama. / Guess I can't see no harm in working and being a mama.",
-  "Piece of Me",
+  "Piece Of Me",
   "My loneliness is killing me. I must confess, I still believe. When I'm not with you, I lose my mind. Give me a sign.",
   "Baby One More Time",
   "But I thought the old lady dropped it into the ocean in the end?",
@@ -297,7 +297,7 @@ var currentInc = new incrementer();
 
 function addOneToInc() {
   currentInc.universalInc += 1;
-  $('#roundkeeper').html('<h1>Round Number ' + currentInc.universalInc + '</h1>');
+  $('#roundkeeper').html('<h2>Round Number ' + currentInc.universalInc + '</h2>');
 }
 
 // COUNTDOWN BELOW
