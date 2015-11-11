@@ -108,7 +108,7 @@ function turnForEachPlayer(whichPlayer){
   $(whichPlayer.callSubmitId).click(function() {
     console.log('submitbuttonRoundPlayerOne has been clicked');
 clearTimer();
-  timedOut();
+eval(whichPlayer.checkAnswer);
   $('#countdown').fadeOut();
   });
 }
@@ -146,7 +146,7 @@ function turnForForfeit(whichPlayer){
   $(whichPlayer.callSubmitId).click(function() {
     console.log('submitbuttonRoundPlayerOne has been clicked');
 clearTimer();
-  timedOut();
+eval(whichPlayer.checkAnswer);
   $('#countdown').fadeOut();
   });
   $('#skipper').click(function() {
