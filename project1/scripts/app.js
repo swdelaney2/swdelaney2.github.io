@@ -13,6 +13,27 @@ $(window).off("keyup", directionsListener);
 
   }}
 
+
+  /// working here
+  var playerOneListener = function(event) {
+    if (event.keyCode == 81) { //Q, player one
+      console.log('Player one has keyed in.');
+  turnForEachPlayer(playerOneAll);
+  $(window).off("keyup", playerOneListener);
+  $(window).off("keyup", playerTwoListener);
+
+    }}
+
+
+    var playerTwoListener = function(event) {
+      if (event.keyCode == 80) { //P, player two
+        turnForEachPlayer(playerTwoAll);
+        $(window).off("keyup", playerOneListener);
+        $(window).off("keyup", playerTwoListener);
+            }}
+
+  //
+
 $(document).ready(function(){ // start
 
 function getNames () {
@@ -47,16 +68,11 @@ function startRound(){
   $('#playspace').append(round);
   $('#round').append(questionsAndAnswers[currentInc.universalInc]);
   console.log('Space button pressed.');
-  window.addEventListener('keyup', function(event) {
+  $(window).on("keyup", playerOneListener);
+  $(window).on("keyup", playerTwoListener);
 
-  if (event.keyCode == 81) { //Q, player one
-    console.log('Player one has keyed in.');
-turnForEachPlayer(playerOneAll);
-  };
-  if (event.keyCode == 80) { //P, player two
-    turnForEachPlayer(playerTwoAll);
-};
-});
+
+
 
 }; // end of start round
 
@@ -109,7 +125,7 @@ function turnForEachPlayer(whichPlayer){
     console.log('submitbuttonRoundPlayerOne has been clicked');
 clearTimer();
 eval(whichPlayer.checkAnswer);
-  $('#countdown').fadeOut(); // need better, more functional solution
+  // $('#countdown').fadeOut();
   });
 }
 
@@ -117,7 +133,7 @@ eval(whichPlayer.checkAnswer);
 function checkAnswer (whichPlayer){
   $ ("#formround").hide();
   var playerAnswer = $(whichPlayer.idHash).val();
-if (playerAnswer == questionsAndAnswers[currentInc.universalInc * 2]) {
+if (playerAnswer === questionsAndAnswers[currentInc.universalInc * 2] && playerAnswer.length === questionsAndAnswers[currentInc.universalInc * 2].length) {
     $('#round').append('<p>You got it! One point for player ' + whichPlayer.identifySelfText + '!');
 eval(whichPlayer.givepoint)
 addOneToInc();
@@ -168,6 +184,8 @@ function skipIt() {
 //second round
 
 function nextRound() {
+  $(window).on("keyup", playerOneListener);
+  $(window).on("keyup", playerTwoListener);
   $('#round').html('');
   $('#round').append(questionsAndAnswers[currentInc.universalInc * 2 - 1]);
 };
