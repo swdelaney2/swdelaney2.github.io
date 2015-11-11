@@ -70,6 +70,7 @@ function startRound(){
   console.log('Space button pressed.');
   $(window).on("keyup", playerOneListener);
   $(window).on("keyup", playerTwoListener);
+  setTimeout(skipIt, 16000)
 
 
 
@@ -84,6 +85,7 @@ var playerOneAll = {
   submitId: "submitbuttonRoundPlayerOne",
   callSubmitId: "#submitbuttonRoundPlayerOne",
   checkAnswer: 'checkAnswer(playerOneAll)',
+  forfeitcheckAnswer: 'forfeitCheckAnswer(playerOneAll)',
   idHash: '#playerOneRound',
   identifySelfText: 'one',
   identifyOpponentText: 'two',
@@ -98,6 +100,7 @@ var playerTwoAll = {
   submitId: "submitbuttonRoundPlayerTwo",
   callSubmitId: "#submitbuttonRoundPlayerTwo",
   checkAnswer: 'checkAnswer(playerTwoAll)',
+  forfeitcheckAnswer: 'forfeitCheckAnswer(playerTwoAll)',
   idHash: '#playerTwoRound',
   identifySelfText: 'two',
   identifyOpponentText: 'one',
@@ -144,8 +147,23 @@ setTimeout(nextRound, 2000);
   eval(whichPlayer.forfeit);
 }
 };
-
-//second round -- work in progress
+//work area
+function forfeitCheckAnswer (whichPlayer){
+  $ ("#formround").hide();
+  var playerAnswer = $(whichPlayer.idHash).val();
+if (playerAnswer === questionsAndAnswers[currentInc.universalInc * 2] && playerAnswer.length === questionsAndAnswers[currentInc.universalInc * 2].length) {
+    $('#round').append('<p>You got it! One point for player ' + whichPlayer.identifySelfText + '!');
+eval(whichPlayer.givepoint)
+addOneToInc();
+setTimeout(nextRound, 2000);
+} else {
+  $('#round').append('<p>Sorry, that is not correct. You lose a point.');
+  eval(whichPlayer.losepoint);
+  skipIt();
+  clearTimer();
+}
+};
+// end work area
 function turnForForfeit(whichPlayer){
   function timedOut() {
     skipIt();
@@ -165,7 +183,7 @@ function turnForForfeit(whichPlayer){
   $(whichPlayer.callSubmitId).click(function() {
     console.log('submitbuttonRoundPlayerOne has been clicked');
 clearTimer();
-eval(whichPlayer.checkAnswer);
+eval(whichPlayer.forfeitcheckAnswer);
   $('#countdown').fadeOut();
   });
   $('#skipper').click(function() {
@@ -176,7 +194,7 @@ eval(whichPlayer.checkAnswer);
 
 function skipIt() {
   console.log('Skipper has been clicked. need to add logic.');
-  $('#round').append('The answer was '+ questionsAndAnswers[currentInc.universalInc * 2] + '. Onto the next round!');
+  $('#round').append('<p>The answer was '+ questionsAndAnswers[currentInc.universalInc * 2] + '. Onto the next round!');
   addOneToInc();
   setTimeout(nextRound, 2000);
 };
@@ -184,6 +202,7 @@ function skipIt() {
 //second round
 
 function nextRound() {
+  setTimeout(skipIt, 16000)
   $(window).on("keyup", playerOneListener);
   $(window).on("keyup", playerTwoListener);
   $('#round').html('');
