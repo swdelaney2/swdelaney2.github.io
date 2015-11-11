@@ -109,7 +109,7 @@ function turnForEachPlayer(whichPlayer){
     console.log('submitbuttonRoundPlayerOne has been clicked');
 clearTimer();
 eval(whichPlayer.checkAnswer);
-  $('#countdown').fadeOut();
+  $('#countdown').fadeOut(); // need better, more functional solution
   });
 }
 
