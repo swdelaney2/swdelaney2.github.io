@@ -47,7 +47,7 @@ function getNames () {
   $( "#scores" ).append(firstPlayer + "(Player One): <div id='namedOneScore'>" + 0 + "</div><br>" + secondPlayer + "(Player Two): <div id='namedTwoScore'>" + 0 + "</div>");
 
 $('#playspace').append('<div id="directions"></div>');
-    $( "#directions" ).append('Welcome to Britney Lyric Trivia! <p>Recognize the font above, you femme fatale? If so, I can tell you are already on your way to winning! <p>This game contains ten questions. Each one is a set of lyrics. Your job is to identify which song they are from. Your answer must match exactly, so no spelling errors. For the sake of this game, do not use any punctuation, except for apostrophes. Also, make sure the first letter of each word is capitalized. <p>For example, if the prompt were "I know I may come off quiet, I may come off shy," you would type "I\'m A Slave For You" -- apostrophe included, all words capitalized. <p><b>Player one</b>, if you know the answer, buzz in by typing "Q." <p><b>Player two</b>, if you know the answer, buzz in by typing "P." <p>Got it? Great! Press "SPACE" to begin.');
+    $( "#directions" ).append('Welcome to Britney Lyric Trivia! <p>Recognize the font above, you femme fatale? If so, I can tell you are already on your way to winning! <p>This game contains ten questions. Each one is a set of lyrics. Your job is to identify which song they are from. For the sake of this game, do not use any punctuation, except for apostrophes. <p>For example, if the prompt were "I know I may come off quiet, I may come off shy," you would type "I\'m A Slave For You" -- apostrophe included. <p><b>Player one</b>, if you know the answer, buzz in by typing "Q." <p><b>Player two</b>, if you know the answer, buzz in by typing "P." <p>Got it? Great! Press "SPACE" to begin.');
 
 $(window).on("keyup", directionsListener);
 
@@ -135,7 +135,7 @@ eval(whichPlayer.checkAnswer);
 function checkAnswer (whichPlayer){
   $ ("#formround").hide();
   var playerAnswer = $(whichPlayer.idHash).val();
-if (playerAnswer === questionsAndAnswers[currentInc.universalInc * 2] && playerAnswer.length === questionsAndAnswers[currentInc.universalInc * 2].length) {
+if (playerAnswer.toUpperCase() === questionsAndAnswers[currentInc.universalInc * 2].toUpperCase() && playerAnswer.length === questionsAndAnswers[currentInc.universalInc * 2].length) {
     $('#round').append('<p>You got it! One point for player ' + whichPlayer.identifySelfText + '!');
 eval(whichPlayer.givepoint)
 addOneToInc();
@@ -150,7 +150,7 @@ setTimeout(nextRound, 2000); // This is fine.
 function forfeitCheckAnswer (whichPlayer){
   $ ("#formround").hide();
   var playerAnswer = $(whichPlayer.idHash).val();
-if (playerAnswer === questionsAndAnswers[currentInc.universalInc * 2] && playerAnswer.length === questionsAndAnswers[currentInc.universalInc * 2].length) {
+if (playerAnswer.toUpperCase() === questionsAndAnswers[currentInc.universalInc * 2].toUpperCase() && playerAnswer.length === questionsAndAnswers[currentInc.universalInc * 2].length) {
     $('#round').append('<p>You got it! One point for player ' + whichPlayer.identifySelfText + '!');
 eval(whichPlayer.givepoint)
 addOneToInc();
