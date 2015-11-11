@@ -13,9 +13,7 @@ $(window).off("keyup", directionsListener);
 
   }}
 
-
-  /// working here
-  var playerOneListener = function(event) {
+var playerOneListener = function(event) {
     if (event.keyCode == 81) { //Q, player one
       console.log('Player one has keyed in.');
   turnForEachPlayer(playerOneAll);
@@ -24,16 +22,14 @@ $(window).off("keyup", directionsListener);
 
     }}
 
-
-    var playerTwoListener = function(event) {
+var playerTwoListener = function(event) {
       if (event.keyCode == 80) { //P, player two
         turnForEachPlayer(playerTwoAll);
         $(window).off("keyup", playerOneListener);
         $(window).off("keyup", playerTwoListener);
             }}
 
-  //
-
+// DOCUMENT READY START
 $(document).ready(function(){ // start
 
 function getNames () {
@@ -49,8 +45,6 @@ function getNames () {
 
   $( "#scores" ).append(firstPlayer + "(Player One): <div id='namedOneScore'>" + 0 + "</div><br>" + secondPlayer + "(Player Two): <div id='namedTwoScore'>" + 0 + "</div>");
 
-
-
 $('#playspace').append('<div id="directions"></div>');
     $( "#directions" ).append('Welcome to the trivia game! This game contains ten questions. Player one, if you know the answer, buzz in by typing "Q." Player two, if you know the answer, buzz in by typing "P." <p>Got it? Great! Press "SPACE" to begin.');
 
@@ -63,21 +57,7 @@ getNames();
 });
 
 }); // end of onload
-
-function startRound(){
-  $('#playspace').append(round);
-  $('#round').append(questionsAndAnswers[currentInc.universalInc]);
-  console.log('Space button pressed.');
-  $(window).on("keyup", playerOneListener);
-  $(window).on("keyup", playerTwoListener);
-  setTimeout(skipIt, 16000)
-
-
-
-
-}; // end of start round
-
-
+// END OF ONLOAD
 
 var playerOneAll = {
   label: "Player 1 Answer:",
@@ -109,7 +89,15 @@ var playerTwoAll = {
   forfeit: 'turnForForfeit(playerOneAll)'
 }
 
+function startRound(){
+  $('#playspace').append(round);
+  $('#round').append(questionsAndAnswers[currentInc.universalInc]);
+  console.log('Space button pressed.');
+  $(window).on("keyup", playerOneListener);
+  $(window).on("keyup", playerTwoListener);
+  setTimeout(skipIt, 16000)
 
+}; // end of start round
 
 function turnForEachPlayer(whichPlayer){
   function timedOut() {eval(whichPlayer.checkAnswer)};
@@ -202,11 +190,16 @@ function skipIt() {
 //second round
 
 function nextRound() {
+  if (currentInc.universalInc == 11) {
+    $('#roundkeeper').hide();
+    finalScore();
+  } else {
   setTimeout(skipIt, 16000)
   $(window).on("keyup", playerOneListener);
   $(window).on("keyup", playerTwoListener);
   $('#round').html('');
   $('#round').append(questionsAndAnswers[currentInc.universalInc * 2 - 1]);
+}
 };
 
 var round = $('<div id=round>');
@@ -265,6 +258,21 @@ function onePointForPlayerTwo() {
 function minusPointForPlayerTwo() {
   secondPlayerScore.scoreTwo -= 1;
   $('#namedTwoScore').html(secondPlayerScore.scoreTwo);
+}
+
+// FINAL SCORE
+
+function finalScore() {
+  if (firstPlayerScore > secondPlayerScore) {
+    console.log('First player wins.');
+    $('#round').append('<p>Congratulations, player one! You are the winner!!!! Godney smiles down upon you.');
+  } else if (firstPlayerScore < secondPlayerScore) {
+    console.log('Second player wins.');
+  $('#round').append('<p>Congratulations, player two! You are the winner!!!! Godney smiles down upon you.');
+  } else {
+    console.log('Tie.');
+$('#round').append("<p>A tie. Life is tough. But Britney Spears has yet to find the perfect man, so you're not the only one dealing with hardship.");
+  }
 }
 
 // INCREMENTER BELOW
