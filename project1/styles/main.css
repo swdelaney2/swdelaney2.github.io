@@ -22,4 +22,19 @@ form {
   width: 20;
   border: 1px black solid; }
 
+#countdown {
+  float: left;
+  width: 20;
+  border: 1px black solid; }
+
+#roundkeeper {
+  margin: 0 auto;
+  height: 4em;
+  margin-bottom: 2em;
+  width: 70%;
+  border: 1px black solid; }
+
+h1 {
+  text-align: center; }
+
 /*# sourceMappingURL=main.css.map */
