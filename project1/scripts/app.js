@@ -132,6 +132,7 @@ function timedOut() {eval(whichPlayer.checkAnswer)}; // PAY ATTENTION TO THIS
   // countdown();
   // setTimer();
   $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id=' + whichPlayer.submitId + '>Submit</button></div></form>');
+$('#' + whichPlayer.id).focus();
   $(whichPlayer.callSubmitId).click(function() {
     console.log('submitbuttonRoundPlayerOne has been clicked');
 // clearTimer();
@@ -188,6 +189,7 @@ function turnForForfeit(whichPlayer){
 //   };
 //   setTimer();
   $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id=' + whichPlayer.submitId + '>Submit</button></div><div class="button"><button type="button" id="skipper">Skip</button></div></form>');
+  $('#' + whichPlayer.id).focus();
   $(whichPlayer.callSubmitId).click(function() {
     console.log('submitbuttonRoundPlayerOne has been clicked');
 // clearTimer();
