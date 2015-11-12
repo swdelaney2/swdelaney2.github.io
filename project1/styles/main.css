@@ -8,7 +8,7 @@ body {
   padding: 1em;
   border: 1px solid #3b8686;
   border-radius: 1em;
-  background: #79bd9a;
+  background: #60a184;
   color: aliceblue; }
 
 #formround {
@@ -42,7 +42,7 @@ body {
 #playspace {
   border: 1px solid #3b8686;
   border-radius: 1em;
-  background: #79bd9a;
+  background: #60a184;
   color: aliceblue;
   float: left;
   width: 70%;
@@ -70,7 +70,7 @@ body {
 
 #roundkeeper {
   background: #3b8686;
-  border: 1px solid #79bd9a;
+  border: 1px solid #60a184;
   margin: 0 auto;
   height: 4em;
   margin-bottom: 2em;

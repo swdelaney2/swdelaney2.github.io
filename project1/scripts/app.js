@@ -54,7 +54,7 @@ function getNames () {
   $( "#scores" ).append(firstPlayer + "(Player One): <div id='namedOneScore'>" + 0 + "</div><br>" + secondPlayer + "(Player Two): <div id='namedTwoScore'>" + 0 + "</div>");
 
 $('#playspace').append('<div id="directions"></div>');
-    $( "#directions" ).append('Welcome to Britney Lyric Trivia! <p>Recognize the font above, you femme fatale? If so, I can tell you are already on your way to winning! <p>This game contains ten questions. Each one is a set of lyrics. Your job is to identify which song they are from. For the sake of this game, do not use any punctuation, except for apostrophes. <p>For example, if the prompt were "I know I may come off quiet, I may come off shy," you would type "I\'m A Slave For You" -- apostrophe included. <p><b>Player one</b>, if you know the answer, buzz in by typing "Q." <p><b>Player two</b>, if you know the answer, buzz in by typing "P." <p><b>Scoring</b>: You get one point for each correct answer, but if you buzz in and get it wrong, you lose a point and the turn is passed to the other player. The other player will then have a chance to skip or to answer themselves.<p>Got it? Great! Press "SPACE" to begin.');
+    $( "#directions" ).append('Welcome to Britney Lyric Trivia! <p>Recognize the font above, you femme fatale? If so, I can tell you are already on your way to winning! <p>This game contains ten questions. Each one is a set of lyrics. Your job is to identify which song they are from. For the sake of this game, do not use any punctuation, except for apostrophes. <p>For example, if the prompt were "I know I may come off quiet, I may come off shy," you would type "I\'m A Slave For You" -- apostrophe included. <p><b>Player one</b>, if you know the answer, buzz in by typing "Q." <p><b>Player two</b>, if you know the answer, buzz in by typing "P." <p><b>Scoring</b>: You get one point for each correct answer, but if you buzz in and get it wrong, you lose a point and the turn is passed to the other player. The other player will then have a chance to skip or to answer themselves. <p><b>Timing</b>: When the round begins, 15 seconds are set on the clock for either player to buzz in. If neither player buzzes, the round advances. If a player buzzes in, the timer resets to 15 seconds. If the original player answers incorrectly, the next player will have 15 seconds to either answer or to skip. If the second player does not click skip, it will count against their score.<p>Got it? Great! Press "SPACE" to begin.');
 
 $(window).on("keyup", directionsListener);
 
@@ -144,6 +144,7 @@ function turnForForfeit(whichPlayer){
   function goToCheckAnswerForfeit(){
     eval(whichPlayer.forfeitcheckAnswer);
   };
+
 
   var timeoutForfeitID;
   function setTimerForfeit(){
