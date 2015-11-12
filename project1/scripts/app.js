@@ -51,6 +51,7 @@ function getNames () {
   $ ("#roundkeeper").append('<h2>Round Number ' + currentInc.universalInc + '</h2>');
   $ ("#playspace").fadeIn();
   $ ("#scores").fadeIn();
+  $ ("#countdown").fadeIn();
 
   $( "#scores" ).append(firstPlayer + "(Player One): <div id='namedOneScore'>" + 0 + "</div><br>" + secondPlayer + "(Player Two): <div id='namedTwoScore'>" + 0 + "</div>");
 
@@ -71,8 +72,8 @@ getNames();
 var playerOneAll = {
   label: "Player 1 Answer:",
   id: "playerOneRound",
-  submitId: "PlayerOne",
-  callSubmitId: "#PlayerOne",
+  // submitId: "PlayerOne",
+  // callSubmitId: "#PlayerOne",
   checkAnswer: 'checkAnswer(playerOneAll)',
   forfeitcheckAnswer: 'forfeitCheckAnswer(playerOneAll)',
   idHash: '#playerOneRound',
@@ -86,8 +87,8 @@ var playerOneAll = {
 var playerTwoAll = {
   label: "Player 2 Answer:",
   id: "playerTwoRound",
-  submitId: "PlayerTwo",
-  callSubmitId: "#PlayerTwo",
+  // submitId: "PlayerTwo",
+  // callSubmitId: "#PlayerTwo",
   checkAnswer: 'checkAnswer(playerTwoAll)',
   forfeitcheckAnswer: 'forfeitCheckAnswer(playerTwoAll)',
   idHash: '#playerTwoRound',
@@ -131,10 +132,11 @@ function turnForEachPlayer(whichPlayer){
 // function timedOut() {eval(whichPlayer.checkAnswer)}; // PAY ATTENTION TO THIS
   // countdown();
   // setTimer();
+  callTimer();
   clearTimerSkip();
-  $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id=' + whichPlayer.submitId + '>Submit</button></div></form>');
+  $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id="submitbuttonRound" class="active">Submit</button></div></form>');
 $('#' + whichPlayer.id).focus();
-  $(whichPlayer.callSubmitId).click(function() {
+  $('#submitbuttonRound').click(function() {
     console.log('PlayerOne has been clicked');
 // clearTimer();
 eval(whichPlayer.checkAnswer);
@@ -189,9 +191,9 @@ function turnForForfeit(whichPlayer){
 //     clearTimeout(timeoutID);
 //   };
 //   setTimer();
-  $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id=' + whichPlayer.submitId + '>Submit</button></div><div class="button"><button type="button" id="skipper">Skip</button></div></form>');
+  $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id="submitbuttonRoundTwo">Submit</button></div><div class="button"><button type="button" id="skipper">Skip</button></div></form>');
   $('#' + whichPlayer.id).focus();
-  $(whichPlayer.callSubmitId).click(function() {
+  $('#submitbuttonRoundTwo').click(function() {
     console.log('PlayerOne has been clicked');
 // clearTimer();
 eval(whichPlayer.forfeitcheckAnswer);
@@ -314,24 +316,26 @@ function addOneToInc() {
 }
 
 // COUNTDOWN BELOW
-// Heavily modified, but still need to teach self. And need to learn how to kill it.
-// Current fade-in and fade-out method is not fully functional
 
-// function countdown() {
-//   $ ("#countdown").fadeIn();
-//
-// var count=16;
-// var counter=setInterval(timer, 1000);
-//
-//
-// function timer()
-// {
-//   count -= 1;
-//   if (count <= 0)
-//   {
-//      clearInterval(counter);
-//      return;
-//   }
-//   $('#countdown').html(count + " secs");
-// }
-// }
+
+var count = 16;
+
+
+function callTimer() {
+var counter = setInterval(timer, 1000);
+
+function timer()
+{
+  count -= 1;
+  if (count <= 0)
+  {
+     clearInterval(counter);
+     return;
+  }
+
+  $('#countdown').html(count + " secs");
+}
+}
+function clearTimer() {
+  clearInterval(counter);
+}
