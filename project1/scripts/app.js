@@ -95,6 +95,8 @@ var playerTwoAll = {
 
 function startRound(){
   $('#playspace').append(round);
+    setTimerSkip();
+    callTimer();
   $('#round').append(questionsAndAnswers[currentInc.universalInc]);
   console.log('Space button pressed.');
   $(window).on("keyup", playerOneListener);
@@ -120,6 +122,8 @@ function clearTimerSkip(){
 // //
 
 function turnForEachPlayer(whichPlayer){
+  clearTimer();
+  clearTimerSkip();
   callTimer();
   $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id="submitbuttonRound">Submit</button></div></form>');
 $('#' + whichPlayer.id).focus();
@@ -130,6 +134,20 @@ eval(whichPlayer.checkAnswer);
   });
 }
 
+function turnForForfeit(whichPlayer){
+  callTimer();
+  $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id="submitbuttonRoundTwo">Submit</button></div><div class="button"><button type="button" id="skipper">Skip</button></div></form>');
+  $('#' + whichPlayer.id).focus();
+  $('#submitbuttonRoundTwo').click(function() {
+    console.log('PlayerOne has been clicked');
+    clearTimer();
+eval(whichPlayer.forfeitcheckAnswer);
+  });
+  $('#skipper').click(function() {
+    clearTimer();
+    skipIt();
+  });
+}
 
 function checkAnswer (whichPlayer){
   $ ("#formround").hide();
@@ -161,24 +179,12 @@ setTimeout(nextRound, 2000); // This is fine.
 }
 };
 
-function turnForForfeit(whichPlayer){
-  callTimer();
-  $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id="submitbuttonRoundTwo">Submit</button></div><div class="button"><button type="button" id="skipper">Skip</button></div></form>');
-  $('#' + whichPlayer.id).focus();
-  $('#submitbuttonRoundTwo').click(function() {
-    console.log('PlayerOne has been clicked');
-    clearTimer();
-eval(whichPlayer.forfeitcheckAnswer);
-  });
-  $('#skipper').click(function() {
-    clearTimer();
-    skipIt();
-  });
-}
 
 function skipIt() {
   console.log('Skipper has been clicked.');
   $('#round').append('<p>The answer was '+ questionsAndAnswers[currentInc.universalInc * 2] + '. Onto the next round!');
+  $(window).off("keyup", playerOneListener);
+  $(window).off("keyup", playerTwoListener);
   addOneToInc();
   setTimeout(nextRound, 2000); // ALL GOOD
 };
@@ -193,6 +199,8 @@ function nextRound() {
   $(window).on("keyup", playerOneListener);
   $(window).on("keyup", playerTwoListener);
   $('#round').html('');
+  setTimerSkip();
+  callTimer();
   $('#round').append(questionsAndAnswers[currentInc.universalInc * 2 - 1]);
 }
 };
