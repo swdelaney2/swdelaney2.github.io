@@ -54,13 +54,14 @@ background: rgb(59,134,134);
   color: aliceblue;
   float: left;
   width: 70%;
+  height: 400px;
   padding: 1em;
 }
 
 #scores {
   background: rgb(207,240,158);
   color: rgb(11,72,107);
-  float: left;
+  float: right;
   width: 20;
   border: 1px black solid;
   padding: 1em;
@@ -68,9 +69,14 @@ background: rgb(59,134,134);
 }
 
 #countdown {
-  float: left;
+  margin-top: 1em;
+  background: rgb(207,240,158);
+  color: rgb(11,72,107);
+  float: right;
   width: 20;
   border: 1px black solid;
+  padding: 1em;
+  border-radius: 20%;
 }
 
 #roundkeeper {

@@ -46,21 +46,27 @@ body {
   color: aliceblue;
   float: left;
   width: 70%;
+  height: 400px;
   padding: 1em; }
 
 #scores {
   background: #cff09e;
   color: #0b486b;
-  float: left;
+  float: right;
   width: 20;
   border: 1px black solid;
   padding: 1em;
   border-radius: 20%; }
 
 #countdown {
-  float: left;
+  margin-top: 1em;
+  background: #cff09e;
+  color: #0b486b;
+  float: right;
   width: 20;
-  border: 1px black solid; }
+  border: 1px black solid;
+  padding: 1em;
+  border-radius: 20%; }
 
 #roundkeeper {
   background: #3b8686;
