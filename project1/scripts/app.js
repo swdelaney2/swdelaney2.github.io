@@ -23,7 +23,6 @@ $(window).off("keyup", directionsListener);
 
 var playerOneListener = function(event) {
     if (event.keyCode == 81) { //Q, player one
-      console.log('Player one has keyed in.');
   turnForEachPlayer(playerOneAll);
   $(window).off("keyup", playerOneListener);
   $(window).off("keyup", playerTwoListener);
@@ -42,8 +41,6 @@ $(document).ready(function(){ // start
 function getNames () {
   var firstPlayer = $('#playerOneName').val();
    var secondPlayer = $('#playerTwoName').val();
- console.log('The first player is ' + firstPlayer);
-  console.log('The second player is ' + secondPlayer);
   $ ("#nameForm").hide();
   $ ("#roundkeeper").fadeIn();
   $ ("#roundkeeper").append('<h2>Round Number ' + currentInc.universalInc + '</h2>');
@@ -98,7 +95,6 @@ function startRound(){
     setTimerSkip();
     callTimer();
   $('#round').append(questionsAndAnswers[currentInc.universalInc]);
-  console.log('Space button pressed.');
   $(window).on("keyup", playerOneListener);
   $(window).on("keyup", playerTwoListener);
 }; // end of start round
@@ -110,8 +106,6 @@ timeoutskipID = setTimeout(skipIt, 16000);
 function clearTimerSkip(){
   clearTimeout(timeoutskipID);
 };
-
-
 
 function turnForEachPlayer(whichPlayer){
   function goToCheckAnswer(){
@@ -135,7 +129,6 @@ $('#' + whichPlayer.id).focus();
   $('#submitbuttonRound').click(function() {
     clearTimer();
     clearTimerTurn();
-    console.log('PlayerOne has been clicked');
     goToCheckAnswer();
   });
 }
@@ -158,7 +151,6 @@ function turnForForfeit(whichPlayer){
   $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id="submitbuttonRoundTwo">Submit</button></div><div class="button"><button type="button" id="skipper">Skip</button></div></form>');
   $('#' + whichPlayer.id).focus();
   $('#submitbuttonRoundTwo').click(function() {
-    console.log('PlayerOne has been clicked');
     clearTimer();
     clearTimerForfeit();
     goToCheckAnswerForfeit();
@@ -202,7 +194,6 @@ setTimeout(nextRound, 2000); // This is fine.
 
 
 function skipIt() {
-  console.log('Skipper has been clicked.');
   $('#round').append('<p>The answer was '+ questionsAndAnswers[currentInc.universalInc * 2] + '. Onto the next round!');
   $(window).off("keyup", playerOneListener);
   $(window).off("keyup", playerTwoListener);
@@ -288,13 +279,10 @@ function minusPointForPlayerTwo() {
 function finalScore() {
   $('#round').html('');
   if (firstPlayerScore.scoreOne > secondPlayerScore.scoreTwo) {
-    console.log('First player wins.');
     $('#round').append('<p>Congratulations, player one! You are the winner!!!! Godney smiles down upon you.');
   } else if (firstPlayerScore.scoreOne < secondPlayerScore.scoreTwo) {
-    console.log('Second player wins.');
   $('#round').append('<p>Congratulations, player two! You are the winner!!!! Godney smiles down upon you.');
   } else {
-    console.log('Tie.');
 $('#round').append("<p>A tie. Life is tough. But Britney Spears has yet to find the perfect man, so you're not the only one dealing with hardship.");
   }
 }
@@ -316,8 +304,6 @@ function addOneToInc() {
 
 var runOrStop = [];
 
-
-
 function callTimer() {
 var counter = setInterval(timer, 1000);
 var count = 16;
@@ -338,5 +324,4 @@ function timer()
 
 function clearTimer() {
   runOrStop.push('stop');
-  console.log(runOrStop);
 }
