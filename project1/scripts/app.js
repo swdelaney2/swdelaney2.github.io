@@ -134,9 +134,10 @@ function turnForEachPlayer(whichPlayer){
   // setTimer();
   callTimer();
   clearTimerSkip();
-  $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id="submitbuttonRound" class="active">Submit</button></div></form>');
+  $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id="submitbuttonRound">Submit</button></div></form>');
 $('#' + whichPlayer.id).focus();
   $('#submitbuttonRound').click(function() {
+    clearTimer();
     console.log('PlayerOne has been clicked');
 // clearTimer();
 eval(whichPlayer.checkAnswer);
@@ -317,25 +318,29 @@ function addOneToInc() {
 
 // COUNTDOWN BELOW
 
+var runOrStop = [];
 
-var count = 16;
 
 
 function callTimer() {
 var counter = setInterval(timer, 1000);
+var count = 16;
 
 function timer()
 {
   count -= 1;
-  if (count <= 0)
+  if (count <= 0 || runOrStop[0] == ["stop"])
   {
      clearInterval(counter);
+     runOrStop.shift();
      return;
   }
 
   $('#countdown').html(count + " secs");
 }
 }
+
 function clearTimer() {
-  clearInterval(counter);
+  runOrStop.push('stop');
+  console.log(runOrStop);
 }
