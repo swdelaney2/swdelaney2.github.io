@@ -12,7 +12,6 @@ $('html').bind('keypress', function(e)
    }
 });
 
-
 var directionsListener = function(event) {
   if (event.keyCode == 32) {
     $( "#directions" ).hide();
@@ -72,8 +71,8 @@ getNames();
 var playerOneAll = {
   label: "Player 1 Answer:",
   id: "playerOneRound",
-  submitId: "submitbuttonRoundPlayerOne",
-  callSubmitId: "#submitbuttonRoundPlayerOne",
+  submitId: "PlayerOne",
+  callSubmitId: "#PlayerOne",
   checkAnswer: 'checkAnswer(playerOneAll)',
   forfeitcheckAnswer: 'forfeitCheckAnswer(playerOneAll)',
   idHash: '#playerOneRound',
@@ -87,8 +86,8 @@ var playerOneAll = {
 var playerTwoAll = {
   label: "Player 2 Answer:",
   id: "playerTwoRound",
-  submitId: "submitbuttonRoundPlayerTwo",
-  callSubmitId: "#submitbuttonRoundPlayerTwo",
+  submitId: "PlayerTwo",
+  callSubmitId: "#PlayerTwo",
   checkAnswer: 'checkAnswer(playerTwoAll)',
   forfeitcheckAnswer: 'forfeitCheckAnswer(playerTwoAll)',
   idHash: '#playerTwoRound',
@@ -102,6 +101,7 @@ var playerTwoAll = {
 function startRound(){
   $('#playspace').append(round);
   $('#round').append(questionsAndAnswers[currentInc.universalInc]);
+  setTimerSkip();
   console.log('Space button pressed.');
   $(window).on("keyup", playerOneListener);
   $(window).on("keyup", playerTwoListener);
@@ -109,13 +109,13 @@ function startRound(){
 
 }; // end of start round
 
-var timeoutID;
-function setTimer(){
-timeoutID = setTimeout(timedOut, 16000);
-};
-function clearTimer(){
-  clearTimeout(timeoutID);
-};
+// var timeoutID;
+// function setTimer(){
+// timeoutID = setTimeout(timedOut, 16000);
+// };
+// function clearTimer(){
+//   clearTimeout(timeoutID);
+// };
 
 var timeoutskipID;
 function setTimerSkip(){
@@ -125,16 +125,17 @@ function clearTimerSkip(){
   clearTimeout(timeoutskipID);
 };
 
-function timedOut() {eval(whichPlayer.checkAnswer)}; // PAY ATTENTION TO THIS
+// function timedOut() {eval(whichPlayer.checkAnswer)}; // PAY ATTENTION TO THIS
 
 function turnForEachPlayer(whichPlayer){
-function timedOut() {eval(whichPlayer.checkAnswer)}; // PAY ATTENTION TO THIS
+// function timedOut() {eval(whichPlayer.checkAnswer)}; // PAY ATTENTION TO THIS
   // countdown();
   // setTimer();
+  clearTimerSkip();
   $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id=' + whichPlayer.submitId + '>Submit</button></div></form>');
 $('#' + whichPlayer.id).focus();
   $(whichPlayer.callSubmitId).click(function() {
-    console.log('submitbuttonRoundPlayerOne has been clicked');
+    console.log('PlayerOne has been clicked');
 // clearTimer();
 eval(whichPlayer.checkAnswer);
   // $('#countdown').fadeOut();
@@ -191,7 +192,7 @@ function turnForForfeit(whichPlayer){
   $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id=' + whichPlayer.submitId + '>Submit</button></div><div class="button"><button type="button" id="skipper">Skip</button></div></form>');
   $('#' + whichPlayer.id).focus();
   $(whichPlayer.callSubmitId).click(function() {
-    console.log('submitbuttonRoundPlayerOne has been clicked');
+    console.log('PlayerOne has been clicked');
 // clearTimer();
 eval(whichPlayer.forfeitcheckAnswer);
   $('#countdown').fadeOut();
@@ -219,6 +220,7 @@ function nextRound() {
   // setTimeout(skipIt, 16000)
   $(window).on("keyup", playerOneListener);
   $(window).on("keyup", playerTwoListener);
+  setTimerSkip();
   $('#round').html('');
   $('#round').append(questionsAndAnswers[currentInc.universalInc * 2 - 1]);
 }
@@ -315,21 +317,21 @@ function addOneToInc() {
 // Heavily modified, but still need to teach self. And need to learn how to kill it.
 // Current fade-in and fade-out method is not fully functional
 
-function countdown() {
-  $ ("#countdown").fadeIn();
-
-var count=16;
-var counter=setInterval(timer, 1000);
-
-
-function timer()
-{
-  count -= 1;
-  if (count <= 0)
-  {
-     clearInterval(counter);
-     return;
-  }
-  $('#countdown').html(count + " secs");
-}
-}
+// function countdown() {
+//   $ ("#countdown").fadeIn();
+//
+// var count=16;
+// var counter=setInterval(timer, 1000);
+//
+//
+// function timer()
+// {
+//   count -= 1;
+//   if (count <= 0)
+//   {
+//      clearInterval(counter);
+//      return;
+//   }
+//   $('#countdown').html(count + " secs");
+// }
+// }
