@@ -16,7 +16,7 @@ body {
   color: aliceblue;
   border-radius: 1em;
   border: 1px solid #3b8686;
-  padding: 1em;
+  padding: 2em;
   margin: 1em; }
 
 #playerOneName {
@@ -25,9 +25,16 @@ body {
 #playerTwoName {
   margin-top: 1em; }
 
-#submitbutton, #submitbuttonRoundPlayerOne, #submitbuttonRoundPlayerTwo {
+#submitbutton, #submitbuttonRound, #submitbuttonRoundTwo {
   float: right;
   margin-top: -3em;
+  border: 0;
+  color: aliceblue;
+  background: #3b8686; }
+
+#skipper {
+  float: right;
+  margin: auto;
   border: 0;
   color: aliceblue;
   background: #3b8686; }

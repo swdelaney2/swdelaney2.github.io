@@ -18,7 +18,7 @@ body {
   color: aliceblue;
   border-radius: 1em;
   border: 1px solid rgb(59,134,134);
-  padding: 1em;
+  padding: 2em;
   margin: 1em;
 }
 
@@ -30,13 +30,22 @@ body {
   margin-top: 1em;
 }
 
-#submitbutton, #submitbuttonRoundPlayerOne, #submitbuttonRoundPlayerTwo {
+#submitbutton, #submitbuttonRound, #submitbuttonRoundTwo {
 float: right;
 margin-top: -3em;
 border: 0;
 color: aliceblue;
 background: rgb(59,134,134);
 }
+
+#skipper {
+float: right;
+margin: auto;
+border: 0;
+color: aliceblue;
+background: rgb(59,134,134);
+}
+
 
 #playspace {
   border: 1px solid rgb(59,134,134);
