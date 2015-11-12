@@ -27,7 +27,6 @@ var playerOneListener = function(event) {
   turnForEachPlayer(playerOneAll);
   $(window).off("keyup", playerOneListener);
   $(window).off("keyup", playerTwoListener);
-clearTimerSkip();
     }}
 
 var playerTwoListener = function(event) {
@@ -35,7 +34,6 @@ var playerTwoListener = function(event) {
         turnForEachPlayer(playerTwoAll);
         $(window).off("keyup", playerOneListener);
         $(window).off("keyup", playerTwoListener);
-        clearTimerSkip();
             }}
 
 // DOCUMENT READY START
@@ -98,12 +96,9 @@ var playerTwoAll = {
 function startRound(){
   $('#playspace').append(round);
   $('#round').append(questionsAndAnswers[currentInc.universalInc]);
-  setTimerSkip();
   console.log('Space button pressed.');
   $(window).on("keyup", playerOneListener);
   $(window).on("keyup", playerTwoListener);
-  // setTimerSkip();
-
 }; // end of start round
 
 var timeoutskipID;
@@ -114,9 +109,18 @@ function clearTimerSkip(){
   clearTimeout(timeoutskipID);
 };
 
+// /// test this in a minute -- if the value is null, not sure it will work
+// var timeoutloseID;
+// function setTimerLose(){
+// timeoutloseID = setTimeout(checkAnswer, 16000); // checkanswer
+// };
+// function clearTimerLose(){
+//   clearTimeout(timeoutloseID);
+// };
+// //
+
 function turnForEachPlayer(whichPlayer){
   callTimer();
-  clearTimerSkip();
   $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id="submitbuttonRound">Submit</button></div></form>');
 $('#' + whichPlayer.id).focus();
   $('#submitbuttonRound').click(function() {
@@ -158,15 +162,16 @@ setTimeout(nextRound, 2000); // This is fine.
 };
 
 function turnForForfeit(whichPlayer){
-
+  callTimer();
   $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id="submitbuttonRoundTwo">Submit</button></div><div class="button"><button type="button" id="skipper">Skip</button></div></form>');
   $('#' + whichPlayer.id).focus();
   $('#submitbuttonRoundTwo').click(function() {
     console.log('PlayerOne has been clicked');
+    clearTimer();
 eval(whichPlayer.forfeitcheckAnswer);
-  $('#countdown').fadeOut();
   });
   $('#skipper').click(function() {
+    clearTimer();
     skipIt();
   });
 }
@@ -187,7 +192,6 @@ function nextRound() {
   } else {
   $(window).on("keyup", playerOneListener);
   $(window).on("keyup", playerTwoListener);
-  setTimerSkip();
   $('#round').html('');
   $('#round').append(questionsAndAnswers[currentInc.universalInc * 2 - 1]);
 }
