@@ -11,3 +11,5 @@ I eliminated a variety of other bugs during testing, including case-sensitivity,
 Ultimately, I am quite pleased with the finished product. However, if I wasn't worried about copyrights, I would have much preferred to play clips of the songs. :D
 
 I hope you enjoy playing!
+
+![Britney Pretty Girls Clapping](http://static.celebuzz.com/uploads/2015/05/Britney-Spears-Pretty-Girls-Clap.gif)
