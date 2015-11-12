@@ -112,13 +112,21 @@ function clearTimerSkip(){
 };
 
 // /// test this in a minute -- if the value is null, not sure it will work
-// var timeoutloseID;
-// function setTimerLose(){
-// timeoutloseID = setTimeout(checkAnswer, 16000); // checkanswer
-// };
-// function clearTimerLose(){
-//   clearTimeout(timeoutloseID);
-// };
+var timeoutTurnID;
+function setTimerTurn(){
+timeoutTurnID = setTimeout(checkAnswer, 16000); // checkanswer
+};
+function clearTimerTurn(){
+  clearTimeout(timeoutTurnID);
+};
+
+var timeoutForfeitID;
+function setTimerForfeit(){
+timeoutForfeitID = setTimeout(forfeitCheckAnswer, 16000); // checkanswer
+};
+function clearTimerForfeit(){
+  clearTimeout(timeoutForfeitID);
+};
 // //
 
 function turnForEachPlayer(whichPlayer){
