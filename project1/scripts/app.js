@@ -3,6 +3,15 @@ $ ("#scores").hide();
 $ ("#roundkeeper").hide();
 $ ("#countdown").hide();
 
+//Disable enter key
+$('html').bind('keypress', function(e)
+{
+   if(e.keyCode == 13)
+   {
+      return false;
+   }
+});
+
 
 var directionsListener = function(event) {
   if (event.keyCode == 32) {
