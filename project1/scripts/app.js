@@ -72,8 +72,6 @@ getNames();
 var playerOneAll = {
   label: "Player 1 Answer:",
   id: "playerOneRound",
-  // submitId: "PlayerOne",
-  // callSubmitId: "#PlayerOne",
   checkAnswer: 'checkAnswer(playerOneAll)',
   forfeitcheckAnswer: 'forfeitCheckAnswer(playerOneAll)',
   idHash: '#playerOneRound',
@@ -87,8 +85,6 @@ var playerOneAll = {
 var playerTwoAll = {
   label: "Player 2 Answer:",
   id: "playerTwoRound",
-  // submitId: "PlayerTwo",
-  // callSubmitId: "#PlayerTwo",
   checkAnswer: 'checkAnswer(playerTwoAll)',
   forfeitcheckAnswer: 'forfeitCheckAnswer(playerTwoAll)',
   idHash: '#playerTwoRound',
@@ -110,14 +106,6 @@ function startRound(){
 
 }; // end of start round
 
-// var timeoutID;
-// function setTimer(){
-// timeoutID = setTimeout(timedOut, 16000);
-// };
-// function clearTimer(){
-//   clearTimeout(timeoutID);
-// };
-
 var timeoutskipID;
 function setTimerSkip(){
 timeoutskipID = setTimeout(skipIt, 16000);
@@ -126,12 +114,7 @@ function clearTimerSkip(){
   clearTimeout(timeoutskipID);
 };
 
-// function timedOut() {eval(whichPlayer.checkAnswer)}; // PAY ATTENTION TO THIS
-
 function turnForEachPlayer(whichPlayer){
-// function timedOut() {eval(whichPlayer.checkAnswer)}; // PAY ATTENTION TO THIS
-  // countdown();
-  // setTimer();
   callTimer();
   clearTimerSkip();
   $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id="submitbuttonRound">Submit</button></div></form>');
@@ -139,9 +122,7 @@ $('#' + whichPlayer.id).focus();
   $('#submitbuttonRound').click(function() {
     clearTimer();
     console.log('PlayerOne has been clicked');
-// clearTimer();
 eval(whichPlayer.checkAnswer);
-  // $('#countdown').fadeOut();
   });
 }
 
@@ -160,7 +141,7 @@ setTimeout(nextRound, 2000); // This is fine.
   eval(whichPlayer.forfeit);
 }
 };
-//work area
+
 function forfeitCheckAnswer (whichPlayer){
   $ ("#formround").hide();
   var playerAnswer = $(whichPlayer.idHash).val();
@@ -173,36 +154,20 @@ setTimeout(nextRound, 2000); // This is fine.
   $('#round').append('<p>Sorry, that is not correct. You lose a point.');
   eval(whichPlayer.losepoint);
   skipIt();
-  // clearTimer();
 }
 };
-// end work area
-function turnForForfeit(whichPlayer){
-  function timedOut() {
-    skipIt();
-    // clearTimer();
-  };
 
-  // countdown();
-//   var timeoutID;
-//   function setTimer(){
-//   timeoutID = setTimeout(timedOut, 16000);
-// };
-//   function clearTimer(){
-//     clearTimeout(timeoutID);
-//   };
-//   setTimer();
+function turnForForfeit(whichPlayer){
+
   $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id="submitbuttonRoundTwo">Submit</button></div><div class="button"><button type="button" id="skipper">Skip</button></div></form>');
   $('#' + whichPlayer.id).focus();
   $('#submitbuttonRoundTwo').click(function() {
     console.log('PlayerOne has been clicked');
-// clearTimer();
 eval(whichPlayer.forfeitcheckAnswer);
   $('#countdown').fadeOut();
   });
   $('#skipper').click(function() {
     skipIt();
-    // clearTimer();
   });
 }
 
@@ -220,7 +185,6 @@ function nextRound() {
     $('#roundkeeper').hide();
     finalScore();
   } else {
-  // setTimeout(skipIt, 16000)
   $(window).on("keyup", playerOneListener);
   $(window).on("keyup", playerTwoListener);
   setTimerSkip();
@@ -230,8 +194,7 @@ function nextRound() {
 };
 
 var round = $('<div id=round>');
-// var firstPlayerScore = 0;
-var secondPlayerScore = 0; // need to comment out later
+
 var questionsAndAnswers = ["blank",
   "You want a hot body? You want a Bugatti? You want a Maserati?",
   "Work Bitch",
