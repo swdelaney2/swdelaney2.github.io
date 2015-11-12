@@ -111,48 +111,60 @@ function clearTimerSkip(){
   clearTimeout(timeoutskipID);
 };
 
-// /// test this in a minute -- if the value is null, not sure it will work
-var timeoutTurnID;
-function setTimerTurn(){
-timeoutTurnID = setTimeout(checkAnswer, 16000); // checkanswer
-};
-function clearTimerTurn(){
-  clearTimeout(timeoutTurnID);
-};
 
-var timeoutForfeitID;
-function setTimerForfeit(){
-timeoutForfeitID = setTimeout(forfeitCheckAnswer, 16000); // checkanswer
-};
-function clearTimerForfeit(){
-  clearTimeout(timeoutForfeitID);
-};
-// //
 
 function turnForEachPlayer(whichPlayer){
+  function goToCheckAnswer(){
+    eval(whichPlayer.checkAnswer);
+  };
+
+  var timeoutTurnID;
+  function setTimerTurn(){
+  timeoutTurnID = setTimeout(goToCheckAnswer, 16000); // checkanswer
+  };
+  function clearTimerTurn(){
+    clearTimeout(timeoutTurnID);
+  };
+
   clearTimer();
   clearTimerSkip();
   callTimer();
+  setTimerTurn();
   $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id="submitbuttonRound">Submit</button></div></form>');
 $('#' + whichPlayer.id).focus();
   $('#submitbuttonRound').click(function() {
     clearTimer();
+    clearTimerTurn();
     console.log('PlayerOne has been clicked');
-eval(whichPlayer.checkAnswer);
+    goToCheckAnswer();
   });
 }
 
 function turnForForfeit(whichPlayer){
+  function goToCheckAnswerForfeit(){
+    eval(whichPlayer.forfeitcheckAnswer);
+  };
+
+  var timeoutForfeitID;
+  function setTimerForfeit(){
+  timeoutForfeitID = setTimeout(goToCheckAnswerForfeit, 16000); // checkanswer
+  };
+  function clearTimerForfeit(){
+    clearTimeout(timeoutForfeitID);
+  };
   callTimer();
+  setTimerForfeit();
   $('#round').append('<form id="formround"><div><label for=' + whichPlayer.id + '>' + whichPlayer.label + '</label><input type="text" id=' + whichPlayer.id + '></div><p><div class="button"><button type="button" id="submitbuttonRoundTwo">Submit</button></div><div class="button"><button type="button" id="skipper">Skip</button></div></form>');
   $('#' + whichPlayer.id).focus();
   $('#submitbuttonRoundTwo').click(function() {
     console.log('PlayerOne has been clicked');
     clearTimer();
-eval(whichPlayer.forfeitcheckAnswer);
+    clearTimerForfeit();
+    goToCheckAnswerForfeit();
   });
   $('#skipper').click(function() {
     clearTimer();
+    clearTimerForfeit();
     skipIt();
   });
 }
