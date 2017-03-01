@@ -1,7 +1,7 @@
 $(window).scroll(function () {
 
-	window_width =  $(".background_one").width()
-	window_height =  $(".background_one").height()
+	window_width =  $(".background_1").width()
+	window_height =  $(".background_1").height()
 
 	original_width = 1080
 	original_height = 1080

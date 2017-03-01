@@ -19,20 +19,32 @@ body {
 	background-size: cover;
 }
 
-.background_one {
+.background_1 {
 	background: url('./images/ada.jpg') no-repeat center center fixed;
 }
 
-.background_two {
+.background_2 {
 	background: url('./images/ada2.jpg') no-repeat center center fixed;
 }
 
-.background_three {
+.background_3 {
   background: url('./images/bigjones.jpg') no-repeat center center fixed;
 }
 
-.background_four {
+.background_4 {
   background: url('./images/bigjones2.jpg') no-repeat center center fixed;
+}
+
+.background_5 {
+	background: url('./images/bigjones3.jpg') no-repeat center center fixed;
+}
+
+.background_6 {
+	background: url('./images/campagnola.jpg') no-repeat center center fixed;
+}
+
+.background_7 {
+	background: url('./images/campagnola2.jpg') no-repeat center center fixed;
 }
 
 .empty, .content {
@@ -72,6 +84,14 @@ span {
   margin-right: auto;
   line-height: 20px;
   height: auto;
-  padding: 5px;
+  padding: 2em;
 	width: 300px;
+}
+
+.extra {
+	background: rgb(112, 128, 144);
+	color: white;
+	height: 100%;
+	overflow: hidden;
+	text-align: center;
 }
